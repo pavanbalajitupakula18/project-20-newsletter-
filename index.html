@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Newsletter UI</title>
-    <link rel="stylesheet" href="style.css" />
+
+    <!-- Font Awesome -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
@@ -12,36 +13,84 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div class="signup-container">
       <div class="icon-container">
         <i class="far fa-envelope-open"></i>
       </div>
+
       <h2>Join Our Newsletter</h2>
       <p>Get the latest updates and coding tips straight to your inbox.</p>
 
-      <form>
+      <!-- Newsletter Form -->
+      <form id="signup-form">
         <div class="input-group">
           <i class="far fa-envelope"></i>
-          <input type="email" required placeholder="Enter your email" />
+          <input type="email" id="email" placeholder="Enter your email" />
         </div>
 
-        <button id="btn1">Subscribe <i class="fas fa-arrow-right"></i></button>
+        <!-- Error message -->
+        <small id="email-error"></small>
+
+        <button id="btn1" type="submit">
+          Subscribe <i class="fas fa-arrow-right"></i>
+        </button>
       </form>
 
+      <!-- Benefits -->
       <div class="benefits">
         <p class="benefit-item"><i class="fas fa-check"></i> Weekly coding tips</p>
         <p class="benefit-item"><i class="fas fa-check"></i> No spam, unsubscribe anytime</p>
       </div>
     </div>
+
+    <!-- JS -->
     <script>
-        let bnt=document.getElementById("btn1");
-        bnt.addEventListener("click",popup)
-        function popup(e){
-           e.preventDefault();
-            alert(" subscribed successfully");
+      const form = document.getElementById("signup-form");
+      const emailInput = document.getElementById("email");
+      const errorText = document.getElementById("email-error");
+
+      // Email regex
+      const emailPattern = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;
+
+      // Submit event
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const emailValue = emailInput.value.trim();
+
+        if (emailValue === "") {
+          showError("Email is required");
+        } else if (!emailPattern.test(emailValue)) {
+          showError("Please enter a valid email address");
+        } else {
+          clearError();
+          alert("Subscribed successfully 🎉");
+          form.reset();
         }
+      });
+
+      // Show error
+      function showError(message) {
+        errorText.textContent = message;
+        emailInput.classList.add("input-error");
+      }
+
+      // Clear error
+      function clearError() {
+        errorText.textContent = "";
+        emailInput.classList.remove("input-error");
+      }
+
+      // Optional: Live validation while typing
+      emailInput.addEventListener("input", () => {
+        if (emailPattern.test(emailInput.value.trim())) {
+          clearError();
+        }
+      });
     </script>
   </body>
 </html>

@@ -5,17 +5,17 @@
 }
 
 :root {
-  --bg-color: #f9fafb;          /* Page background */
-  --container-bg: #daf4ff;     /* Card background */
+  --bg-color: #f9fafb;          
+  --container-bg: #daf4ff;    
 
-  --primary-color: #2563eb;    /* Blue accent */
-  --secondary-color: #16a34a;  /* Green highlight */
+  --primary-color: #2563eb;    
+  --secondary-color: #16a34a;  
 
-  --text-primary: #111827;     /* Main text */
-  --text-secondary: #6b7280;   /* Muted text */
+  --text-primary: #111827;     
+  --text-secondary: #6b7280;   
 
-  --border-color: #e5e7eb;     /* Borders */
-  --input-bg: #f3f4f6;         /* Input background */
+  --border-color: #e5e7eb;    
+  --input-bg: #f3f4f6;         
 
   --shadow-color: rgba(0, 0, 0, 0.08);
 }
@@ -158,4 +158,13 @@ button:hover i {
   .signup-container {
     padding: 2rem 1.5rem;
   }
+}
+#email-error {
+  display: block;
+  margin-bottom:30px;
+  font-size: 0.85rem;
+  color: #ef4444; /* red */
+}
+.input-error {
+  border: 1px solid #ef4444 !important;
 }
